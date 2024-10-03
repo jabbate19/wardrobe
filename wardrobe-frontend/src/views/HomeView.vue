@@ -24,13 +24,16 @@ import { computed } from 'vue'
 export default {
   data() {
     const items = [] as Item[];
-    const groupedItems = computed(() => items.reduce(
-      (r: any, e: any, i) => (i % 4 ? r[r.length - 1].push(e) : r.push([e])) && r,
-      []
-    ))
     return {
-      items,
-      groupedItems
+      items
+    }
+  },
+  computed: {
+    groupedItems() {
+      return this.items.reduce(
+        (r: any, e: any, i) => (i % 4 ? r[r.length - 1].push(e) : r.push([e])) && r,
+        []
+      )
     }
   },
   methods: {
