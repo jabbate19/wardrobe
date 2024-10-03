@@ -29,10 +29,10 @@ from .blueprints import api_bp  # noqa: E402
 app.register_blueprint(api_bp, url_prefix="/api")
 
 @app.route('/')
-def send_index(path):
+def send_index():
     return send_from_directory('dist', 'index.html')
 
-@app.route('/<path:path>')
+@app.route('/<path>')
 def send_file(path):
     return send_from_directory('dist', path)
 
