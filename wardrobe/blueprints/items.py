@@ -39,3 +39,22 @@ def add_item():
 def get_items():
     items = WardrobeItem.query.all()
     return jsonify([item.to_dict() for item in items])
+
+@app.route('/api/item/<item_id>', methods=['DELETE'])
+def delete_item(item_id):
+    item = WardrobeItem.query.get(item_id)
+    
+    if not item:
+        return jsonify({'error': 'Item not found'}), 404
+
+    # Delete the file from S3
+    try:
+        s3.delete_object(Bucket=app.config['S3_BUCKET'], Key=item.id.hex)
+    except Exception as e:
+        return jsonify({'error': 'Failed to delete from S3', 'message': str(e)}), 500
+
+    # Delete the item from the database
+    db.session.delete(item)
+    db.session.commit()
+
+    return jsonify({'message': 'Item deleted successfully'}), 200

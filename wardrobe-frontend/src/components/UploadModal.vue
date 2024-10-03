@@ -37,7 +37,7 @@
                 required
               />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" :disabled="loading">Submit</button>
           </form>
         </div>
       </div>
@@ -47,11 +47,13 @@
 
 <script lang="ts">
 import { useItemStore } from '../stores/ItemStore'
+import { ref } from 'vue';
 export default {
   data() {
     return {
       name: '',
-      imageFile: null
+      imageFile: null,
+      loading: false
     }
   },
   methods: {
@@ -62,6 +64,7 @@ export default {
       this.imageFile = event.target.files[0]
     },
     async submitForm() {
+      this.loading = true;
       const formData = new FormData()
       formData.append('name', this.name)
       formData.append('image', this.imageFile!)
@@ -79,10 +82,13 @@ export default {
         const data = await response.json()
         const itemStore = useItemStore()
         itemStore.items.push(data)
-        this.closeModal() // Hide modal on success
+        this.closeModal()
+        this.name = '';
+        this.imageFile = null;
       } catch (error) {
         console.error('Error:', error)
       }
+      this.loading = false;
     }
   }
 }
