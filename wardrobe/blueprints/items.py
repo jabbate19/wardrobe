@@ -40,7 +40,7 @@ def get_items():
     items = WardrobeItem.query.all()
     return jsonify([item.to_dict() for item in items])
 
-@app.route('/api/item/<item_id>', methods=['DELETE'])
+@app.route('/api/items/<item_id>', methods=['DELETE'])
 def delete_item(item_id):
     item = WardrobeItem.query.get(item_id)
     
