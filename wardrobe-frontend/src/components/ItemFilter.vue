@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { useItemStore } from '@/stores/ItemStore'
 
 export default {
