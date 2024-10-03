@@ -28,13 +28,18 @@ from .blueprints import api_bp  # noqa: E402
 
 app.register_blueprint(api_bp, url_prefix="/api")
 
-@app.route('/')
+@app.route('/favicon.ico')
+def send_favicon():
+    return send_from_directory('dist', 'favicon.ico')
+
+@app.route('/assets/<path:path>')
+def send_file(path):
+    return send_from_directory('dist/assets', path)
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
 def send_index():
     return send_from_directory('dist', 'index.html')
-
-@app.route('/<path:path>')
-def send_file(path):
-    return send_from_directory('dist', path)
 
 if __name__ == '__main__':
     app.run(debug=True)
