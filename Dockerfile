@@ -38,4 +38,4 @@ COPY wardrobe ./wardrobe
 
 COPY --from=frontend /app/dist ./dist
 
-ENTRYPOINT ["uvicorn", "wardrobe:app", "--host", "0.0.0.0", "--port", "8080"]
+ENTRYPOINT ["gunicorn", "wardrobe:app", "--bind=0.0.0.0:8080"]
