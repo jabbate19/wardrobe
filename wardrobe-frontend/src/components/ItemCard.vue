@@ -7,6 +7,7 @@ import DeleteButton from './DeleteButton.vue';
     <img :src="'https://s3.csh.rit.edu/skyzwardrobe/' + item!.id" class="card-img-top" />
     <div class="card-body">
       <h5 class="card-title">{{ item!.name }}</h5>
+      <h6><span class="badge bg-secondary" v-for="tag in item!.tags">{{ tag }}</span></h6>
       <DeleteButton :id="item!.id" />
     </div>
   </div>
