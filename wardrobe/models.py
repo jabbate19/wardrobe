@@ -6,8 +6,8 @@ import bcrypt
 db = SQLAlchemy()
 
 item_tag = db.Table('item_tag',
-    db.Column('item_id', db.Integer, db.ForeignKey('wardrobe_items.id')),
-    db.Column('tag', db.Integer, db.ForeignKey('tags.name'))
+    db.Column('item_id', UUID(as_uuid=True), db.ForeignKey('wardrobe_items.id')),
+    db.Column('tag', db.String(100), db.ForeignKey('tags.name'))
 )
 
 class WardrobeItem(db.Model):
