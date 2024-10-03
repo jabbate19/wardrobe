@@ -38,7 +38,7 @@ def send_file(path):
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
-def send_index():
+def send_index(path):
     return send_from_directory('dist', 'index.html')
 
 if __name__ == '__main__':
