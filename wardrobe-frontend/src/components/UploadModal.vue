@@ -47,7 +47,7 @@
 
 <script lang="ts">
 import { useItemStore } from '../stores/ItemStore'
-import { ref } from 'vue';
+import { ref } from 'vue'
 export default {
   data() {
     return {
@@ -64,7 +64,7 @@ export default {
       this.imageFile = event.target.files[0]
     },
     async submitForm() {
-      this.loading = true;
+      this.loading = true
       const formData = new FormData()
       formData.append('name', this.name)
       formData.append('image', this.imageFile!)
@@ -83,12 +83,12 @@ export default {
         const itemStore = useItemStore()
         itemStore.items.push(data)
         this.closeModal()
-        this.name = '';
-        this.imageFile = null;
+        this.name = ''
+        this.imageFile = null
       } catch (error) {
         console.error('Error:', error)
       }
-      this.loading = false;
+      this.loading = false
     }
   }
 }
