@@ -23,7 +23,7 @@ class WardrobeItem(db.Model):
             'id': self.id.hex,
             'name': self.name,
             'date_added': self.date_added.isoformat(),
-            'tags': self.tags
+            'tags': [tag.name for tag in self.tags]
         }
 
 class Tag(db.Model):
