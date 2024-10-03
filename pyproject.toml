@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "wardrobe"
+version = "0.1.0"
+description = ""
+authors = ["Joe Abbate <josephabbateny@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^3.0.3"
+flask-sqlalchemy = "^3.1.1"
+boto3 = "^1.35.32"
+psycopg2-binary = "^2.9.9"
+python-dotenv = "^1.0.1"
+bcrypt = "^4.2.0"
+flask-login = "^0.6.3"
+uvicorn = "^0.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
