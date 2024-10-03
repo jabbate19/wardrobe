@@ -21,16 +21,17 @@ import UploadModal from '../components/UploadModal.vue'
 <script lang="ts">
 import { type Item } from '../models'
 import { computed } from 'vue'
+import { useItemStore } from '../stores/ItemStore'
 export default {
   data() {
-    const items = [] as Item[];
+    const itemStore = useItemStore();
     return {
-      items
+      itemStore
     }
   },
   computed: {
     groupedItems() {
-      return this.items.reduce(
+      return this.itemStore.items.reduce(
         (r: any, e: any, i) => (i % 4 ? r[r.length - 1].push(e) : r.push([e])) && r,
         []
       )
@@ -41,7 +42,7 @@ export default {
       fetch('/api/items')
         .then((response) => response.json())
         .then((data) => {
-          this.items = data
+          this.itemStore.items = data
         })
     }
   },

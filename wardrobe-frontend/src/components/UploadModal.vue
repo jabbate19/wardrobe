@@ -46,6 +46,7 @@
 </template>
 
 <script lang="ts">
+import { useItemStore } from '../stores/ItemStore'
 export default {
   data() {
     return {
@@ -76,7 +77,8 @@ export default {
         }
 
         const data = await response.json()
-        console.log('Success:', data)
+        const itemStore = useItemStore()
+        itemStore.items.push(data)
         this.closeModal() // Hide modal on success
       } catch (error) {
         console.error('Error:', error)
