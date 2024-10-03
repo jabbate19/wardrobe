@@ -17,7 +17,7 @@ def upload_to_s3(file, bucket_name, uuid):
         return None
 
 @api_bp.route('/items', methods=['POST'])
-#@login_required
+@login_required
 def add_item():
     name = request.form['name']
     file = request.files['image']

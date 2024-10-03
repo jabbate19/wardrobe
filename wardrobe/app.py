@@ -32,7 +32,7 @@ app.register_blueprint(api_bp, url_prefix="/api")
 def send_index():
     return send_from_directory('dist', 'index.html')
 
-@app.route('/<path>')
+@app.route('/<path:path>')
 def send_file(path):
     return send_from_directory('dist', path)
 
